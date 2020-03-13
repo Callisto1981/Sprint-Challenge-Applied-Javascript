@@ -32,16 +32,16 @@ axios
     });
   })
   .catch(error => {
-    console.log("this is an error", error);
+    console.log("error", error);
   });
 
 function card(obj) {
-  const cardDiv = document.createElement("div"),
-    headline = document.createElement("div"),
-    author = document.createElement("div"),
-    imgContainer = document.createElement("div"),
-    img = document.createElement("img"),
-    authorName = document.createElement("span");
+  const cardDiv = document.createElement("div");
+  const headline = document.createElement("div");
+  const author = document.createElement("div");
+  const imgContainer = document.createElement("div");
+  const img = document.createElement("img");
+  const authorName = document.createElement("span");
 
   headline.textContent = "Name: " + obj.headline;
   img.src = obj.authorPhoto;
@@ -49,7 +49,7 @@ function card(obj) {
 
   cardDiv.classList.add("card");
   headline.classList.add("headline");
-  authorName.classList.add("author");
+  author.classList.add("author");
   imgContainer.classList.add("img-container");
   img.classList.add("img");
   authorName.classList.add("authorName");
@@ -58,7 +58,7 @@ function card(obj) {
   cardDiv.append(author);
 
   author.append(imgContainer);
-  ungCibtauber.append(img);
+  imgContainer.append(img);
   author.append(authorName);
 
   return cardDiv;
