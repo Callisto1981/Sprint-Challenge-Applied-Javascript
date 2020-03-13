@@ -8,21 +8,25 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 const topicsElement = document.querySelector(".topics");
-const topics = ["javascript", "bootstrap", "technology", "jquery", "node.js"];
-topics.forEach(element => {
-  axios
-    .get("https://lambda-times-backend.herokuapp.com/topics")
-    .then(item => {
-      //console.log(item.data);
-      topicsElement.append(Header(response.data));
-    })
-    .catch(error => {
-      //console.log("i'm here", error);
+//const topics = ["javascript", "bootstrap", "technology", "jquery", "node.js"];
+
+axios
+  .get("https://lambda-times-backend.herokuapp.com/topics")
+  .then(item => {
+    console.log(item.data);
+    item.data.topics.forEach(topic => {
+      topicsElement.append(Tab(topic));
     });
-});
+    //topicsElement.append(Header(response.data));
+  })
+  .catch(error => {
+    //console.log("i'm here", error);
+  });
 
 function Tab(item) {
   const tab = document.createElement("div");
-  tab.textContent = item.tab;
+  tab.textContent = item;
   tab.classList.add("tab");
+
+  return tab;
 }
