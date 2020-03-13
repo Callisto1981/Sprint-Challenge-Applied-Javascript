@@ -17,3 +17,49 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+const cardsContainer = document.querySelector(".cards-container");
+
+axios
+  .get("https://lambda-times-backend.herokuapp.com/articles")
+  .then(response => {
+    console.log(response);
+    const newArray = Object.values(response.data.articles);
+    newArray.forEach(element => {
+      element.forEach(item => {
+        cardsContainer.append(card(item));
+      });
+    });
+  })
+  .catch(error => {
+    console.log("this is an error", error);
+  });
+
+function card(obj) {
+  const cardDiv = document.createElement("div"),
+    headline = document.createElement("div"),
+    author = document.createElement("div"),
+    imgContainer = document.createElement("div"),
+    img = document.createElement("img"),
+    authorName = document.createElement("span");
+
+  headline.textContent = "Name: " + obj.headline;
+  img.src = obj.authorPhoto;
+  authorName.textContent = "By: " + obj.authorName;
+
+  cardDiv.classList.add("card");
+  headline.classList.add("headline");
+  authorName.classList.add("author");
+  imgContainer.classList.add("img-container");
+  img.classList.add("img");
+  authorName.classList.add("authorName");
+
+  cardDiv.append(headline);
+  cardDiv.append(author);
+
+  author.append(imgContainer);
+  ungCibtauber.append(img);
+  author.append(authorName);
+
+  return cardDiv;
+}

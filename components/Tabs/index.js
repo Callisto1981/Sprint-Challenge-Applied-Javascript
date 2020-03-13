@@ -7,6 +7,8 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
+
+const topics = ["javascript", "bootstrap", "technology", "jquery", "node.js"];
 topics.forEach(element => {
   axios
     .get("https:lambda-times-backend.herokuapp.com/topics")
@@ -17,15 +19,13 @@ topics.forEach(element => {
       console.log("You have an error", error);
     });
 });
-function tabComponent(item) {
+function TabComponent(item) {
   const tab = document.createElement("div");
-  tab.textContent = item.tab;
+
+  tab.textContent = item;
   tab.classList.add("tab");
 
   return tab;
 }
-
 const topicsElement = document.querySelector(".topics");
-topicsElement.append(tabComponent());
-
-const topics = ["javascript", "bootstrap", "technology", "jquery", "node.js"];
+topicsElement.append(TabComponent());
